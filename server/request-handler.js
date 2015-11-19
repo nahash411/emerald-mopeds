@@ -36,6 +36,18 @@ exports.addTask = function (req, res) {
   });
 };
 
+exports.startTimer = function (req, res) {
+  Task.findOneAndUpdate({_id: req.body._id}, {start: Date.now()}, function (err, task) {
+    if (err) return res.send(500, err);
+  });
+};
+
+exports.stopTimer = function (req, res) {
+  Task.findOneAndUpdate({_id: req.body._id}, {end: Date.now()}, function (err, task) {
+    if (err) return res.send(500, err);
+  });
+};
+
 /*
 fetchClients is called when /clients path receives get request
 Finds all clients in the database and responds with result of query
