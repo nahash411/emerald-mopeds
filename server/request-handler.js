@@ -13,8 +13,9 @@ fetchClients is called when /clients path receives get request
 Finds all clients in the database and responds with result of query
 */
 exports.fetchClients = function (req, res) {
-  Client.find({}).exec(function (err, clients) {
-    res.send(200, clients);
+  Client.find({user: req.session.user._id})
+    .exec(function (err, clients) {
+      res.send(200, clients);
   });
 };
 
@@ -23,6 +24,7 @@ Builds new Client document with request properties and saves it to the db
 */
 exports.addClient = function (req, res) {
   var newClient = new Client({
+    user: req.session.user._id,
     name: req.body.name,
     address: req.body.address,
     phone: req.body.phone
