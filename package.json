@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "serve": "node-inspector & nodemon --debug ./server/server.js"
   },
   "repository": {
     "type": "git",
