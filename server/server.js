@@ -29,13 +29,13 @@ app.use(session({
 //Request handlers for all routes in app
 app.get('/', util.checkUser, renderIndex);
 
-app.get('/clients', handle.fetchClients);
+app.get('/clients', util.checkUser, handle.fetchClients);
 app.post('/clients', handle.addClient);
 
-app.get('/addclient', renderIndex);
-app.get('/add', renderIndex);
+app.get('/addclient', util.checkUser, renderIndex);
+app.get('/add', util.checkUser, renderIndex);
 
-app.get('/jobs', handle.fetchJobs);
+app.get('/jobs', util.checkUser, handle.fetchJobs);
 app.post('/jobs', handle.addJob);
 
 app.get('/login', loginUserForm);
