@@ -10,7 +10,7 @@ var User = require('./db/models/user');
 var Task = require('./db/models/task');
 
 exports.fetchTasks = function (req, res) {
-  Task.find({})
+  Task.find({user: req.session.user._id})
      .populate('job')
      .exec(function (err, tasks) {
        if(err) {
