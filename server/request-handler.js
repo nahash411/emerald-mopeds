@@ -93,13 +93,22 @@ exports.loginUser = function (req, res) {
       if (user === null) {
         res.redirect('/signup');
       } else {
-        request.get(options, function (err, resp, body) {
+        // request.get(options, function (err, resp, body) {
+        //   if (err) {
+        //     return console.error('get failed:', err);
+        //   }
+        //   console.log('Request successful!  Server responded with:', body);
+        //   util.createSession(req, res, user);
+        // });
+        user.comparePassword(password, function (err, isMatch) {
           if (err) {
-            return console.error('get failed:', err);
+            console.error('Passwords did not match:', err);
+            console.log('Redirecting back to login page...');
+            res.redirect('/login');
+          } else {
+            util.createSession(req, res, user);
           }
-          console.log('Request successful!  Server responded with:', body);
-          util.createSession(req, res, user);
-        });
+        })
       }
   });
 };
@@ -126,30 +135,44 @@ exports.signupUser = function (req, res) {
   User.findOne({ email: email })
     .exec(function (err, user) {
       if (user === null) {
-        request.post(options, function (err, resp, body) {
-          if (err || body.length === 36) {
-          // If the response body is 'User with this email already exists';
-          // Won't work any other way, unfortunately
-            console.error('upload failed:', body);
-            res.redirect('/login');
-          } else {
-            parsed = JSON.parse(body);
-            console.log('Request successful! Server responded with:', parsed);
-            var newUser = new User({
-              email: email,
-              password: password,
-              api_token: parsed.data.api_token
-            });
-            newUser.save(function (err, newUser) {
-              if (err) {
-                return console.error('upload failed:', err);
-              } else {
-                console.log(newUser);
-                util.createSession(req, res, newUser);
-              }
-            });
-          }
+        // request.post(options, function (err, resp, body) {
+        //   if (err || body.length === 36) {
+        //   // If the response body is 'User with this email already exists';
+        //   // Won't work any other way, unfortunately
+        //     console.error('upload failed:', body);
+        //     res.redirect('/login');
+        //   } else {
+        //     parsed = JSON.parse(body);
+        //     console.log('Request successful! Server responded with:', parsed);
+        //     var newUser = new User({
+        //       email: email,
+        //       password: password,
+        //       api_token: parsed.data.api_token
+        //     });
+        //     newUser.save(function (err, newUser) {
+        //       if (err) {
+        //         return console.error('upload failed:', err);
+        //       } else {
+        //         console.log(newUser);
+        //         util.createSession(req, res, newUser);
+        //       }
+        //     });
+        //   }
+        // });
+        
+        var newUser = new User({
+          email: email,
+          password: password
         });
+
+        newUser.save(function (err, user) {
+          if (err) {
+            return console.error('Saving user to db failed');
+          } else {
+            console.log(user);
+            util.createSession(req, res, user);
+          }
+        });        
       } else {
         console.log('Account already exists');
         res.redirect('/login');
