@@ -44,7 +44,7 @@ Finds all jobs in the database, replaces client_id with an object that include c
 Responds with result of query
 */
 exports.fetchJobs = function (req, res) {
-  Job.find({})
+  Job.find({user: req.session.user._id})
      .populate('client', 'name')
      .exec(function (err, jobs) {
        if(err) {
