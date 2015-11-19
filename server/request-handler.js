@@ -80,13 +80,13 @@ Receives all toggl info for later use, and creates user session
 exports.loginUser = function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
-  var auth = "Basic " + new Buffer(email + ":" + password).toString("base64");
-  var options = {
-    url: 'https://www.toggl.com/api/v8/me',
-    headers: {
-      "Authorization": auth
-    }
-  };
+  // var auth = "Basic " + new Buffer(email + ":" + password).toString("base64");
+  // var options = {
+  //   url: 'https://www.toggl.com/api/v8/me',
+  //   headers: {
+  //     "Authorization": auth
+  //   }
+  // };
 
   User.findOne({ email: email })
     .exec(function (err, user) {
@@ -125,12 +125,12 @@ exports.signupUser = function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
-  var options = {
-    headers: {'Content-Type': 'application/json'},
-    url: 'https://www.toggl.com/api/v8/signups',
-    body: '{"user":{"email":"'+email+'","password":"'+password+'"}}'
-  };
-  console.log('start of signup user req handler ', req.body);
+  // var options = {
+  //   headers: {'Content-Type': 'application/json'},
+  //   url: 'https://www.toggl.com/api/v8/signups',
+  //   body: '{"user":{"email":"'+email+'","password":"'+password+'"}}'
+  // };
+  // console.log('start of signup user req handler ', req.body);
 
   User.findOne({ email: email })
     .exec(function (err, user) {
