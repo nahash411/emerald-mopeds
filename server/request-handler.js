@@ -8,6 +8,41 @@ var Client = require('./db/models/client');
 var request = require('request');
 var User = require('./db/models/user');
 
+exports.fetchTasks = function (req, res) {
+  Task.find({user: req.session.user._id})
+     .populate('job')
+     .exec(function (err, tasks) {
+       if(err) {
+        res.send(500, err);
+       } else {
+        res.send(tasks);
+       }
+     });
+};
+
+exports.addTask = function (req, res) {
+  var newTask = new Task({
+    user: req.session.user._id,
+    name: req.body.name,
+    start: Date.now()
+  });
+  newTask.save(function (err, newTask) {
+    if (err) {
+      res.send(500, err);
+      console.log('error adding/saving task');
+    } else {
+      console.log('added new task: ', newTask);
+      res.send(200, newTask);
+    }
+  });
+};
+
+exports.stopTimer = function (req, res) {
+  Task.findOneAndUpdate({_id: req.body._id}, {end: Date.now()}, function (err, task) {
+    if (err) return res.send(500, err);
+  });
+};
+
 /*
 fetchClients is called when /clients path receives get request
 Finds all clients in the database and responds with result of query
