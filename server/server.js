@@ -26,6 +26,11 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(function (req, res, next) {
+  console.log(req.body);
+  next();
+});
+
 //Request handlers for all routes in app
 app.get('/', util.checkUser, renderIndex);
 
