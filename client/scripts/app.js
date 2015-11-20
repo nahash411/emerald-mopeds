@@ -20,7 +20,8 @@ window.Lancealot = Backbone.View.extend({
     'click li a.clients': 'renderClientsView',
     'click li a.addClient': 'renderClientEntryView',
     'submit #addJob': 'renderIndexView',
-    'submit #addClient': 'renderAddView'
+    'submit #addClient': 'renderAddView',
+    'click .clickableJob': 'renderSingleJobView'
   },
 
   initialize: function(){
@@ -53,6 +54,13 @@ window.Lancealot = Backbone.View.extend({
   renderAddView: function(e) {
     e && e.preventDefault();
     this.router.navigate('/add', { trigger: true });
+  },
+
+  renderSingleJobView: function(e) {
+    console.log($(e.currentTarget));
+    var id = 0;
+    e && e.preventDefault();
+    this.router.navigate('/singleJob/' + id, { trigger: true });
   }
 
 });

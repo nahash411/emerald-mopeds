@@ -38,12 +38,25 @@
 
 
 <script id='job' type='text/x-handlebars-template'>
-    <td>{{client.name}}</td>
+    <td class='clickableJob'><a href='/singleJob'>{{client.name}}</a> </td>
     <td>{{description}}</td>
     <td>${{rate}}</td>
     <td>{{formattedStart}}</td>
     <td>{{formattedEnd}}</td>
     <td><input type="checkbox" {{checked}}></td>
+</script>
+
+<script id='singleJob' type='text/x-handlebars-template'>
+  <table>
+    <td>{{client.name}}</td>
+    <td>{{description}}</td>
+    <td>${{rate}}</td>
+    <td>{{formattedStart}}</td>
+    <td>{{formattedEnd}}</td>
+  </table>
+  <div>
+    <p>Tasks here</p>
+  </div>
 </script>
 
 <script id='add' type='text/x-handlebars-template'>
