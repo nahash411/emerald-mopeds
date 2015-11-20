@@ -41,6 +41,9 @@ app.post('/jobs', handle.addJob);
 app.get('/login', loginUserForm);
 app.post('/login', handle.loginUser);
 
+app.get('/tasks', util.checkUser, handle.fetchTasks);
+app.post('/tasks', handle.addTask);
+
 app.get('/signup', signupUserForm);
 app.post('/signup', handle.signupUser);
 
