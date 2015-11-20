@@ -12,7 +12,9 @@ Lancealot.TasksListView = Backbone.View.extend({
 
   render: function(){
     this.$el.empty();
-    this.$el.html(this.template());
+    var taskEntryView = new Lancealot.TaskEntryView(); 
+    this.$el.append(taskEntryView.render().el);
+    this.$el.append(this.template());
     return this;
   },
 
