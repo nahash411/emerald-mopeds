@@ -10,6 +10,6 @@ var taskSchema = mongoose.Schema({
   status: Boolean
 });
 
-var Task = mongoose.model('Task', jobSchema);
+var Task = mongoose.model('Task', taskSchema);
 
 module.exports = Task;
