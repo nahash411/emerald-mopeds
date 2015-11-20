@@ -7,6 +7,7 @@ var Job = require('./db/models/job');
 var Client = require('./db/models/client');
 var request = require('request');
 var User = require('./db/models/user');
+var Task = require('./db/models/task');
 
 exports.fetchTasks = function (req, res) {
   Task.find({job: req.body.jobId})
