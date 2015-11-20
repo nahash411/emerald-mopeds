@@ -3,7 +3,7 @@ Lancealot.TasksListView = Backbone.View.extend({
   tagName: 'table',
   className: 'table table-striped',
 
-  template: Templates['tableheads'],
+  template: Templates['tasktablehead'],
 
   initialize: function(){
     this.collection.on('sync', this.addAll, this);
