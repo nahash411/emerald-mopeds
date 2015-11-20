@@ -9,7 +9,7 @@ var request = require('request');
 var User = require('./db/models/user');
 
 exports.fetchTasks = function (req, res) {
-  Task.find({user: req.session.user._id})
+  Task.find({job: req.body.jobId})
      .populate('job')
      .exec(function (err, tasks) {
        if(err) {
