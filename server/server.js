@@ -36,6 +36,7 @@ app.get('/addclient', util.checkUser, renderIndex);
 app.get('/add', util.checkUser, renderIndex);
 
 app.get('/jobs', util.checkUser, handle.fetchJobs);
+app.get('/jobs/:id', util.checkUser, handle.fetchTasks);
 app.post('/jobs', handle.addJob);
 
 app.get('/login', loginUserForm);
