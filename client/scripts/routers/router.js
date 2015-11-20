@@ -16,7 +16,8 @@ Lancealot.Router = Backbone.Router.extend({
     '': 'index',
     'add': 'addJob',
     'addclient': 'addClient',
-    'clients': 'showClients'
+    'clients': 'showClients',
+    'singleJob/:id': 'showTasks'
   },
 
   swapView: function(view){
@@ -42,5 +43,22 @@ Lancealot.Router = Backbone.Router.extend({
     var clients = new Lancealot.Clients();
     var clientsView = new Lancealot.ClientsListView({ collection: clients });
     this.swapView(clientsView);
+  },
+
+  showTasks: function(id){
+    console.log("id in router", id);
+    var that = this;
+    //var job = new Lancealot.Job({_id: id});
+    var jobModel = new Lancealot.Job(); 
+    var job = jobModel.fetch({_id: id,
+      success: function (data) {
+        console.log(data);
+        for(var each in data.attributes){
+          console.log(data.attributes[each]._id);
+          if(data.attributes[each]._id === id){
+            that.swapView(new Lancealot.singleJobView({model: data.attributes[each]}));
+          }
+        }
+      }});
   }
 });

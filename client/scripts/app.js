@@ -20,11 +20,16 @@ window.Lancealot = Backbone.View.extend({
     'click li a.clients': 'renderClientsView',
     'click li a.addClient': 'renderClientEntryView',
     'submit #addJob': 'renderIndexView',
-    'submit #addClient': 'renderAddView'
+    'submit #addClient': 'renderAddView',
+    'click .clickableJob': 'renderSingleJobView'
   },
 
   initialize: function(){
     $("#container").append(this.render().el);
+
+    this.on("listenForJob", function (model){
+      console.log(model);
+    });
 
     this.router = new Lancealot.Router({ el: this.$el.find('#container') });
     Backbone.history.start({ pushState: true });
@@ -53,6 +58,14 @@ window.Lancealot = Backbone.View.extend({
   renderAddView: function(e) {
     e && e.preventDefault();
     this.router.navigate('/add', { trigger: true });
+  },
+
+  renderSingleJobView: function(e) {
+    e && e.preventDefault();
+    console.log(e);
+    var id = e.target.innerHTML;
+    //var id = $(e.currentTarget).data("id");
+    this.router.navigate('/singleJob/' + id, { trigger: true });
   }
 
 });

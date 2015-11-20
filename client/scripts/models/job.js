@@ -1,4 +1,7 @@
 // Job Model
 Lancealot.Job = Backbone.Model.extend({
-  url: '/jobs'
+  url: '/jobs',
+  select: function(){
+    this.trigger("jobViewClick", this);
+  }
 });

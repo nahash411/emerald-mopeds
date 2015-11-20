@@ -12,7 +12,8 @@ Lancealot.JobView = Backbone.View.extend({
   tagName: 'tr',
 
   events: {
-    'click input:checkbox': 'toggleComplete'
+    'click input:checkbox': 'toggleComplete',
+    'click .clickableJob': 'examineJob'
   },
 
   template: Templates['job'],
@@ -42,6 +43,12 @@ Lancealot.JobView = Backbone.View.extend({
     return this;
   },
 
+
+  examineJob: function(e) {
+    console.log(e);
+    this.model.select();
+    this.trigger("listenForJob", this.model);
+  },
   // updates status of the job in DB (true v. false)
   toggleComplete: function(e) {
     var checked = e.target.checked;
