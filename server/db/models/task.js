@@ -5,10 +5,9 @@ var autoIncrement = require('mongoose-auto-increment');
 var taskSchema = mongoose.Schema({
   user: {type: Number, ref: 'User'},
   job: {type: Number, ref: 'Job'},
-  name: Number,
+  name: String,
   start: Date,
-  end: Date,
-  status: Boolean
+  end: Date
 });
 
 taskSchema.plugin(autoIncrement.plugin, 'Task');
