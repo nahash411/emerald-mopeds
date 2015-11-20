@@ -28,6 +28,14 @@
     </thead>
 </script>
 
+<script id='tasktablehead' type='text/x-handlebars-template'>
+    <thead>
+      <th>Name</th>
+      <th>Start</th>
+      <th>Stop</th>
+    </thead>
+</script>
+
 <script id='clienttable' type='text/x-handlebars-template'>
   <thead>
     <th class="clientCells">Name</th>
@@ -99,6 +107,12 @@
     <td class="clientCells">{{name}}</td>
     <td class="clientCells">{{address}}</td>
     <td class="clientCells">{{phone}}</td>
+</script>
+
+<script id='taskInfo' type='text/x-handlebars-template'>
+    <td class="clientCells">{{name}}</td>
+    <td class="clientCells">{{start}}</td>
+    <td class="clientCells">{{end}}</td>
 </script>
 
 <script>
