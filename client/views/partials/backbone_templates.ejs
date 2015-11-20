@@ -36,6 +36,19 @@
     </thead>
 </script>
 
+<script id='taskManager' type='text/x-handlebars-template'>
+  <form class="form-group" id="addJob">
+      <label>Task:</label>
+        <label>Description:</label>
+          <input class="form-control" id="description" type="text"/><br/>
+        <label>Start:</label>
+          <input class="form-control" id="start" type="date"/><br/>
+        <label>End:</label>
+          <input class="form-control" id="end" type="date"/><br/>
+        <button class="submit btn btn-default">Add Task</button>
+    </form>
+  </script>
+
 <script id='clienttable' type='text/x-handlebars-template'>
   <thead>
     <th class="clientCells">Name</th>
