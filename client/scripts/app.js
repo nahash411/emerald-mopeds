@@ -62,7 +62,7 @@ window.Lancealot = Backbone.View.extend({
 
   renderSingleJobView: function(e) {
     e && e.preventDefault();
-    console.log(e);
+    //console.log(e);
     var id = e.target.innerHTML;
     //var id = $(e.currentTarget).data("id");
     this.router.navigate('/singleJob/' + id, { trigger: true });

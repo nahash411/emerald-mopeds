@@ -7,6 +7,8 @@ Lancealot.singleJobView = Backbone.View.extend({
     //this.model.on('change', this.render, this);
     //this.model.on('sync', this.addOne);
     console.log(this.model);
+    this.model.fetch();
+    this.render();
   },
 
   render: function() {
