@@ -16,7 +16,8 @@ Lancealot.singleJobView = Backbone.View.extend({
   },
 
   addOne: function(){
-    var view = new Lancealot.JobView({ model: this.collection.models[0] });
+    console.log(this.collection);
+    //var view = new Lancealot.JobView({ model: this.collection.models[0] });
     this.$el.append(view.render().el);
   }
 

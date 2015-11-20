@@ -2,7 +2,7 @@
 Lancealot.Job = Backbone.Model.extend({
   url: '/jobs',
   select: function(){
-    console.log("click in job model");
+    console.log(this);
     this.trigger("jobViewClick", this);
   }
 });
