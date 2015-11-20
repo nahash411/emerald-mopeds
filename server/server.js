@@ -26,6 +26,11 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(function (req, res, next) {
+  console.log(req.body);
+  next();
+});
+
 //Request handlers for all routes in app
 app.get('/', util.checkUser, renderIndex);
 
@@ -36,6 +41,7 @@ app.get('/addclient', util.checkUser, renderIndex);
 app.get('/add', util.checkUser, renderIndex);
 
 app.get('/jobs', util.checkUser, handle.fetchJobs);
+app.get('/jobs/:id', util.checkUser, handle.fetchTasks);
 app.post('/jobs', handle.addJob);
 
 app.get('/login', loginUserForm);
