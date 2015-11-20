@@ -47,7 +47,7 @@ Lancealot.JobView = Backbone.View.extend({
   examineJob: function(e) {
     console.log(e);
     this.model.select();
-    this.trigger("helllllllooooo", this.model);
+    this.trigger("listenForJob", this.model);
   },
   // updates status of the job in DB (true v. false)
   toggleComplete: function(e) {

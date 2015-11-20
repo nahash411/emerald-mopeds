@@ -46,8 +46,19 @@ Lancealot.Router = Backbone.Router.extend({
   },
 
   showTasks: function(id){
-    console.log(id);
-    var jobs = new Lancealot.Jobs();
-    this.swapView(new Lancealot.singleJobView({collection: jobs}));
+    console.log("id in router", id);
+    var that = this;
+    //var job = new Lancealot.Job({_id: id});
+    var jobModel = new Lancealot.Job(); 
+    var job = jobModel.fetch({_id: id,
+      success: function (data) {
+        console.log(data);
+        for(var each in data.attributes){
+          console.log(data.attributes[each]._id);
+          if(data.attributes[each]._id === id){
+            that.swapView(new Lancealot.singleJobView({model: data.attributes[each]}));
+          }
+        }
+      }});
   }
 });

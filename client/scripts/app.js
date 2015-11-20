@@ -27,9 +27,9 @@ window.Lancealot = Backbone.View.extend({
   initialize: function(){
     $("#container").append(this.render().el);
 
-    // this.model.get('jobs').on('jobViewClick', function (model){
-    //   console.log("made it to the app");
-    // });
+    this.on("listenForJob", function (model){
+      console.log(model);
+    });
 
     this.router = new Lancealot.Router({ el: this.$el.find('#container') });
     Backbone.history.start({ pushState: true });
@@ -62,8 +62,9 @@ window.Lancealot = Backbone.View.extend({
 
   renderSingleJobView: function(e) {
     e && e.preventDefault();
-    console.log($(e.innerText));
-    var id = $(e.currentTarget).data("id");
+    console.log(e);
+    var id = e.target.innerHTML;
+    //var id = $(e.currentTarget).data("id");
     this.router.navigate('/singleJob/' + id, { trigger: true });
   }
 

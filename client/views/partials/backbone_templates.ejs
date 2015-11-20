@@ -38,13 +38,13 @@
 
 
 <script id='job' type='text/x-handlebars-template'>
-    <td class='clickableJob'><a href='/singleJob' data-id='${_id}'>{{client.name}}</a> </td>
+    <td>{{client.name}}</td>
     <td>{{description}}</td>
     <td>${{rate}}</td>
     <td>{{formattedStart}}</td>
     <td>{{formattedEnd}}</td>
     <td><input type="checkbox" {{checked}}></td>
-    <td>{{id}}</td>
+    <td class='clickableJob'><a href='/singleJob' data-id='${_id}'>{{_id}}</a></td>
 </script>
 
 <script id='singleJob' type='text/x-handlebars-template'>
