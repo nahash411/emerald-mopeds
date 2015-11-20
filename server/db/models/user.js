@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+var autoIncrement = require('mongoose-auto-increment');
 var SALT_WORK_FACTOR = 10;
 
 var userSchema = mongoose.Schema({
+  _id: Number,
   email: { type: String, required: true, index: { unique: true } },
   password: { type: String, required: true },
   api_token: String
@@ -34,6 +36,8 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
+
+userSchema.plugin(autoIncrement.plugin, 'User');
 
 var User = mongoose.model('User', userSchema);
 
