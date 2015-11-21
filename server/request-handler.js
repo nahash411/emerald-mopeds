@@ -24,6 +24,7 @@ exports.fetchTasks = function (req, res) {
 exports.addTask = function (req, res) {
   var newTask = new Task({
     user: req.session.user._id,
+    job: req.params.id,
     name: req.body.name,
     start: Date.now()
   });
