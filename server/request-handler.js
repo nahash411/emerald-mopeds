@@ -27,7 +27,7 @@ exports.addTask = function (req, res) {
     user: req.session.user._id,
     job: req.body.job,
     name: req.body.name,
-    start: req.body.start
+    start: Date.now()
   });
   newTask.save(function (err, newTask) {
     if (err) {
