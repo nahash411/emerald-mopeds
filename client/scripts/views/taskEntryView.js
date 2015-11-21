@@ -21,11 +21,12 @@ Lancealot.TaskEntryView = Backbone.View.extend({
     var name = $('#description').val();
     var start = $('#start').val();
     var end = $('#end').val();
-
+    var url = window.location.href.split('/');
     var task = new Lancealot.Task({
       name: name,
       start: start,
       end: end,
+      job: url[url.length - 1]
     });
 
     task.save({});
