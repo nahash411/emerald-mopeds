@@ -20,7 +20,7 @@ exports.checkUser = function(req, res, next) {
     findUser({username: user.username})
       .then(function(foundUser){
         if (foundUser) {
-          next()
+          next();
         } else {
           res.send(401)
         }
@@ -82,7 +82,8 @@ exports.createJobDoc = function(req, res) {
 
     newJob.save(function (err, job) {
       if (err) return res.send(500, err);
-      res.redirect('/jobs');
+      // job.client = {name: req.body.client};
+      res.json(job);
     });
 
   });
