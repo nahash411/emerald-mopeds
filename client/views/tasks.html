@@ -8,7 +8,7 @@
   </nav>
 </div>
 
-<form ng-show="tasks[0].end" ng-submit="addTask(task)" class="form-group" id="addJob">
+<form ng-show="!tasks[0] || tasks[0].end" ng-submit="addTask(task)" class="form-group" id="addJob">
     <label>Task description:</label>
       <input ng-model="task.name" lass="form-control" id="name" type="text"/>
     <button class="submit btn btn-default">Start</button>
@@ -22,17 +22,29 @@
     <th>Name</th>
     <th>Start</th>
     <th>End</th>
-    <th>Total</th>
-    <th>* Rate ({{tasks[0].job.rate}})</th>
+    <th>Hours Worked</th>
+    <th>* Rate (${{tasks[0].job.rate}})</th>
   </thead>
   <tr ng-repeat="task in tasks">
     <td>{{task.name}}</td>
     <td>{{task.pStart}}</td>
     <td ng-show="task.end">{{task.pEnd}}</td>
     <td ng-show="task.end">{{task.totalTime}}</td>
-    <td ng-show="task.end">{{task.totalTime * task.job.rate}}</td>
+    <td ng-show="task.end">${{(task.totalTime * task.job.rate).toFixed(2)}}</td>
     <td ng-hide="task.end"><button ng-click="endTask(task)">Stop</button></td>
-
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <b>
+        Amount Due:
+      </b>
+    </td>
+    <td>
+      ${{totalBillable.toFixed(2)}}
+    </td>
   </tr>
 
 </table>

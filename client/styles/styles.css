@@ -91,6 +91,10 @@ Forms, inputs, and tables
   color: #30312e;
 }
 
+.table>tbody>tr>td {
+  vertical-align: middle;
+}
+
 td {
   color: #57616f;
 }
