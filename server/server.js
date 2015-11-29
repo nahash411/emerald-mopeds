@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var compression = require('compression');
 var bodyParser = require('body-parser');
 // var partials = require('express-partials');
 var handle = require('./request-handler.js');
@@ -14,6 +15,7 @@ var util = require('./utility');
 // });
 
 //Middleware
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.set('views', __dirname + '/../client/views');
