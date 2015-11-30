@@ -99,17 +99,38 @@ angular.module('lancealot.tasks', [])
       doc.text('Address: ' + $scope.client.address);
       doc.text('Phone: ' + $scope.client.phone);
 
+      /*
+      doc.image('../styles/Lancer_icon.png', 320, 15, {fit: [100, 100]})
+       .rect(320, 15, 100, 100)
+       .stroke()
+       .text('Fit', 320, 0);
+      */
+      
+      doc
+        .moveTo(100, 120)
+        .lineTo(500, 120)
+        .fill("#0059b3")
+        .stroke();
+
       doc
         .moveDown()
-        .text('Job: ' + $scope.tasks[0].job.description);
-      doc.text('Rate: ' + $scope.tasks[0].rate + '/hr');
+        .fill("black")
+        .text('Job: ' + $scope.tasks[0].job.description, {align: 'center'});
+      doc.text('Rate: $' + $scope.tasks[0].rate + '/hr', {align: 'center'});
+
+      doc
+        .moveTo(100, 160)
+        .lineTo(500, 160)
+        .fill("#0059b3")
+        .stroke();
 
       $scope.tasks.forEach(function (task) {
         doc
           .moveDown()
+          .fill("black")
           .text('Task: ' + task.name);
         doc.text('Hours Worked: ' + task.totalTime);
-        doc.text('Total Cost: ' + task.totalTime * task.rate);
+        doc.text('Total Cost: $' + (task.totalTime * task.rate).toFixed(2), {align: 'right'});
       })
 
       doc.end();
