@@ -8,15 +8,15 @@
   </nav>
 </div>
 
-<form ng-show="editingTask" ng-submit="updateTask(editingTask)" class="form-group" id="editTask">
+<form ng-show="editingTask" ng-submit="updateTask(newTask)" class="form-group" id="editTask">
   <h4>{{editingTask.name}}</h4><br/>
   <label>edit start date</label>
-    <input ng-model="editingTask.start" class="form-control" id="startDate" type="date" value="{{getDate('start')}}"/><br/>
+    <input ng-model="newTask.start" class="form-control" id="startDate" type="date" value="{{getDate('start')}}"/><br/>
   <label>edit start time</label>
-    <input ng-model="editingTask.startTime" class="form-control" id="startTime" type="time"/><br/>
+    <input ng-model="newTask.startTime" class="form-control" id="startTime" type="time" value="{{getTime('start')}}"/><br/>
   <label>edit end date</label>
-    <input ng-model="editingTask.end" class="form-control" id="endDate" type="date" value="{{getDate('end')}}"/><br/>
+    <input ng-model="newTask.end" class="form-control" id="endDate" type="date" value="{{getDate('end')}}"/><br/>
   <label>edit end time</label>
-    <input ng-model="editingTask.endTime" class="form-control" id="endTime" type="time"/><br/>
+    <input ng-model="newTask.endTime" class="form-control" id="endTime" type="time" value="{{getTime('end')}}"/><br/>
   <button class="submit btn btn-default">Update Task</button>
 </form>
