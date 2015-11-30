@@ -1,6 +1,7 @@
 angular.module('lancealot', [
   'lancealot.jobs',
   'lancealot.tasks',
+  'lancealot.task',
   'lancealot.clients',
   'lancealot.auth',
   'lancealot.nav',
@@ -34,6 +35,11 @@ angular.module('lancealot', [
       .when('/jobs/:jobId', {
         templateUrl: './views/tasks.html',
         controller: 'TasksController',
+        authenticate: true
+      })
+      .when('/tasks/:taskId', {
+        templateUrl: './views/taskInfo.html',
+        controller: 'TaskController',
         authenticate: true
       })
       .when('/login', {
