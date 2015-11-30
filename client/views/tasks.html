@@ -34,6 +34,8 @@
     <td ng-show="task.end">{{task.totalTime}}</td>
     <td ng-show="task.end">${{(task.totalTime * task.job.rate).toFixed(2)}}</td>
     <td ng-hide="task.end"><button ng-click="endTask(task)">Stop</button></td>
+    <td ng-hide="task.end"></td>
+    <td ng-hide="task.end"></td>
   </tr>
   <tr>
     <td></td>
