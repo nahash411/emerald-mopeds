@@ -5,6 +5,8 @@ angular.module('lancealot.tasks', [])
 
     $scope.openTask = false;
 
+    $scope.totalBillable = 0;
+
     $scope.startTime;
 
     $scope.endTask = function(task) {
@@ -27,6 +29,9 @@ angular.module('lancealot.tasks', [])
             tasks[i].pEnd = $scope.convertTime(tasks[i].end);
             tasks[i].totalTime = $scope.totalTime(tasks[i]);
             tasks[i].rate = tasks[i].job.rate;
+            if (tasks[i].totalTime) {
+              $scope.totalBillable += tasks[i].totalTime * tasks[i].rate;
+            }
             $scope.tasks.unshift(tasks[i]);
           }
         });
