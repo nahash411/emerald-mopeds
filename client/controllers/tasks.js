@@ -20,6 +20,13 @@ angular.module('lancealot.tasks', [])
       // clearInterval($scope.timer);
     };
 
+    $scope.setClient = function (id) {
+      Clients.fetchOne(id)
+        .then(function (client){
+          $scope.client = client[0];
+        });
+    };
+
     $scope.fetchTasks = function() {
       Tasks.fetchTasks($routeParams.jobId)
         .then(function (tasks) {
@@ -34,6 +41,8 @@ angular.module('lancealot.tasks', [])
             }
             $scope.tasks.unshift(tasks[i]);
           }
+          //call method to correctly set the current client
+          $scope.setClient($scope.tasks[0].job.client);
         });
     };
 
