@@ -91,6 +91,34 @@ angular.module('lancealot.tasks', [])
     $scope.fetchTasks();
     // $scope.timer;
 
+    $scope.createPDF = function () {
+      var doc = new PDFDocument();
+      var stream = doc.pipe(blobStream());
+
+      doc.text('Name: ' + $scope.client.name);
+      doc.text('Address: ' + $scope.client.address);
+      doc.text('Phone: ' + $scope.client.phone);
+
+      doc
+        .moveDown()
+        .text('Job: ' + $scope.tasks[0].job.description);
+      doc.text('Rate: ' + $scope.tasks[0].rate + '/hr');
+
+      $scope.tasks.forEach(function (task) {
+        doc
+          .moveDown()
+          .text('Task: ' + task.name);
+        doc.text('Hours Worked: ' + task.totalTime);
+        doc.text('Total Cost: ' + task.totalTime * task.rate);
+      })
+
+      doc.end();
+      stream.on('finish', function () {
+        var url = stream.toBlobURL('application/pdf');
+        window.open(url);
+      });
+    };
+
   })
 
 
