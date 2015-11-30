@@ -1,6 +1,6 @@
 angular.module('lancealot.tasks', [])
 
-  .controller('TasksController', function ($scope, $routeParams, Tasks, Clients) {
+  .controller('TasksController', function ($scope, $routeParams, $window, Tasks, Clients) {
     $scope.tasks = [];
 
     $scope.openTask = false;
@@ -44,6 +44,11 @@ angular.module('lancealot.tasks', [])
           //call method to correctly set the current client
           $scope.setClient($scope.tasks[0].job.client);
         });
+    };
+
+    $scope.editTask = function(task) {
+      Tasks.setEditingTask(task);
+      $window.location = "/#/tasks/" + task._id;
     };
 
     $scope.totalTime = function (task) {
@@ -91,6 +96,8 @@ angular.module('lancealot.tasks', [])
 
   .factory('Tasks', function ($http) {
 
+    var editingTask = undefined;
+
     var fetchTasks = function (id) {
       return $http({
         method: 'GET', 
@@ -99,7 +106,6 @@ angular.module('lancealot.tasks', [])
         return res.data;
       });
     };
-
 
     var endTask = function(task) {
       return $http({
@@ -123,9 +129,34 @@ angular.module('lancealot.tasks', [])
       });
     };
 
+    var updateTask = function (task, jobId) {
+
+      task.job = jobId;
+
+      return $http({
+        method: 'PUT',
+        url: '/tasks',
+        data: task
+      }).then(function (res) {
+        return;
+      });
+    };
+
+    var setEditingTask = function (task) {
+      editingTask = task;
+    };
+
+    var getEditingTask = function () {
+      console.log(editingTask);
+      return editingTask;
+    };
+
     return {
       fetchTasks: fetchTasks,
       addTask: addTask,
-      endTask: endTask
+      endTask: endTask,
+      updateTask: updateTask,
+      getEditingTask: getEditingTask,
+      setEditingTask: setEditingTask
     };
   })

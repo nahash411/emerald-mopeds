@@ -23,6 +23,26 @@ exports.fetchTasks = function (req, res) {
      });
 };
 
+exports.updateTask = function (req, res) {
+
+  Task.findOneAndUpdate({_id: req.body._id}, {start: req.body.start, end: req.body.end}, function (err, task) {
+    if (err) return res.send(500, err);
+    res.sendStatus(201);
+  });
+
+  // Task.findOne({job: req.body.job, _id: req.body._id})
+  //    .exec(function (err, task) {
+  //      if(err) {
+  //       res.send(500, err);
+  //      } else {
+  //       task.start = req.body.start;
+  //       task.end = req.body.end;
+  //       task.save();
+  //       res.sendStatus(201);
+  //      }
+  //    });
+};
+
 exports.decodeToken = function(token) {
   var user = jwt.decode(token, 'nyan cat');
   return user._id

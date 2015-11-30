@@ -26,6 +26,7 @@
     <th>End</th>
     <th>Hours Worked</th>
     <th>* Rate (${{tasks[0].job.rate}})</th>
+    <th></th>
   </thead>
   <tr ng-repeat="task in tasks">
     <td>{{task.name}}</td>
@@ -33,7 +34,9 @@
     <td ng-show="task.end">{{task.pEnd}}</td>
     <td ng-show="task.end">{{task.totalTime}}</td>
     <td ng-show="task.end">${{(task.totalTime * task.job.rate).toFixed(2)}}</td>
+    <td ng-show="task.end"><a ng-click="editTask(task)">edit</a></td>
     <td ng-hide="task.end"><button ng-click="endTask(task)">Stop</button></td>
+    <td ng-hide="task.end"></td>
     <td ng-hide="task.end"></td>
     <td ng-hide="task.end"></td>
   </tr>
@@ -49,6 +52,7 @@
     <td>
       ${{totalBillable.toFixed(2)}}
     </td>
+    <td></td>
   </tr>
 
 </table>
