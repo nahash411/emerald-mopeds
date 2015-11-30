@@ -65,6 +65,13 @@ exports.fetchClients = function (req, res) {
   });
 };
 
+exports.fetchOneClient = function (req, res) {
+  Client.find({user: exports.decodeToken(req.headers['x-access-token']), _id: req.params.id})
+    .exec(function (err, client) {
+      res.json(client);
+  });
+};
+
 /*
 Builds new Client document with request properties and saves it to the db
 */

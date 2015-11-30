@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
 // app.get('/', util.checkUser);
 
 app.get('/clients', util.checkUser, handle.fetchClients);
+app.get('/clients/:id', util.checkUser, handle.fetchOneClient);
 app.post('/clients', handle.addClient);
 
 // app.get('/addclient', util.checkUser, renderIndex);

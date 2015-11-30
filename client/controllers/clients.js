@@ -34,6 +34,15 @@ angular.module('lancealot.clients', [])
       });
     };
 
+    var fetchOne = function (id) {
+      return $http({
+        method: 'GET', 
+        url: '/clients/' + id
+      }).then(function (res) {
+        return res.data;
+      });
+    }
+
     var addClient = function (client) {
       return $http({
         method: 'POST',
@@ -46,6 +55,7 @@ angular.module('lancealot.clients', [])
 
     return {
       fetchClients: fetchClients,
-      addClient: addClient
+      addClient: addClient,
+      fetchOne: fetchOne
     };
   })
