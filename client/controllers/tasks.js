@@ -196,7 +196,6 @@ angular.module('lancealot.tasks', [])
     };
 
     var getEditingTask = function () {
-      console.log(editingTask);
       return editingTask;
     };
 
